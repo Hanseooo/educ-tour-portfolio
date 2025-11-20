@@ -75,16 +75,18 @@ export default function TechStackMarquee() {
     stop2.current?.stop();
     stop3.current?.stop();
 
-    x1.set(x1.get() + v);
-    x2.set(x2.get() - v * 0.7);
-    x3.set(x3.get() + v * 0.9);
+    x1.set(x1.get() + v * 1.2);
+    x2.set(x2.get() - v * 1.2);
+    x3.set(x3.get() + v * 1.2);
   });
+
+
 
   useMotionValueEvent(velocityMV, "change", (v) => {
     if (Math.abs(v) < 0.01) {
-      stop1.current = animate(x1, x1.get() + 100000, { type: "inertia", velocity: 80000, power: 0.001, timeConstant: 4000 });
-      stop2.current = animate(x2, x2.get() - 100000, { type: "inertia", velocity: 80000, power: 0.001, timeConstant: 4000 });
-      stop3.current = animate(x3, x3.get() + 100000, { type: "inertia", velocity: 80000, power: 0.001, timeConstant: 4000 });
+      stop1.current = animate(x1, x1.get() + 200, { type: "inertia", velocity: 800, power: 0.4, timeConstant: 4000 });
+      stop2.current = animate(x2, x2.get() - 200, { type: "inertia", velocity: 800, power: 0.4, timeConstant: 4000 });
+      stop3.current = animate(x3, x3.get() + 200, { type: "inertia", velocity: 800, power: 0.4, timeConstant: 4000 });
     }
   });
 
@@ -99,6 +101,19 @@ export default function TechStackMarquee() {
   const row1Width = row1.length * (cardSize + gap);
   const row2Width = row2.length * (cardSize + gap);
   const row3Width = row3.length * (cardSize + gap);
+
+      useEffect(() => {
+    const updateOffset = () => {
+        const w = window.innerWidth;
+        x1.set(-(row1Width / 2) + w / 2);
+        x2.set(-(row2Width / 2) + w / 2);
+        x3.set(-(row3Width / 2) + w / 2);
+    };
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+    }, [row1Width, row2Width, row3Width, x1, x2, x3]);
+
 
   const wrappedX1 = useTransform(x1, (v) => ((v % row1Width) + row1Width) % row1Width - row1Width);
   const wrappedX2 = useTransform(x2, (v) => ((v % row2Width) + row2Width) % row2Width - row2Width);
