@@ -81,7 +81,7 @@ export default function HeroSection() {
             style={{ y: buttonTranslate }}
           >
             <Button asChild>
-              <a href="#projects" className="w-full md:w-auto text-center">See Projects</a>
+              <a href="#projects-section" className="w-full md:w-auto text-center">See Projects</a>
             </Button>
             <Button variant="outline" asChild>
               <a href="#contact" className="w-full md:w-auto text-center">Github</a>

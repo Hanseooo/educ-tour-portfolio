@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSection from "@/components/sections/HeroSection";
 import { useScrollStore } from "@/store/scrollStore";
 import TechStackMarquee from "../sections/TechStackMarquee";
+import sprinkle from "@/assets/svg/layered-waves-haikei.svg"
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -44,7 +45,7 @@ export default function HomePage() {
       ScrollTrigger.create({
         trigger: section,
         start: "top top", // Pin when section center reaches viewport center
-        end: "+=200%", // Stay pinned for 2 viewport heights of scrolling
+        end: "+=300%", // Stay pinned for 2 viewport heights of scrolling
         pin: marqueeWrapper, // Pin this element
         pinSpacing: true, // Add spacing to prevent layout jump
         scrub: true, // Smooth scrubbing
@@ -65,7 +66,12 @@ export default function HomePage() {
       {/* Tech Stack Marquee Section - WITH GSAP PIN */}
       <section 
         ref={sectionRef}
-        className="relative w-full mt-64 h-[340vh]"
+        className="relative w-full mt-64 h-[460vh]"style={{
+        backgroundImage: `url(${sprinkle})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom",
+        backgroundSize: "cover",
+    }}
       >
         <div 
           ref={marqueeWrapperRef}
@@ -84,14 +90,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Companies Visited */}
-      <section className="py-20 bg-muted text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-10">Companies I've Visited</h2>
+      {/* PROJECTS */}
+      <section id="projects-section" className="py-20 bg-muted text-center">
+        <h2 className="text-3xl md:text-5xl font-bold mb-10">PROJECTS</h2>
       </section>
 
-      {/* Gallery */}
+      {/* ABOUT ME */}
       <section className="py-20 bg-background text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-10">Gallery</h2>
+        <h2 className="text-3xl md:text-5xl font-bold mb-10">ABOUT ME</h2>
       </section>
     </main>
   );
