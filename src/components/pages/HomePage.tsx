@@ -76,7 +76,7 @@ export default function HomePage() {
         el,
         { y: 0 }, 
         {
-          y: -800,
+          y: -1200,
           ease: "none",
           scrollTrigger: {
             trigger: el,
