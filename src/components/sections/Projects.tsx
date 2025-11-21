@@ -72,7 +72,7 @@ const otherProjects : ProjectInfo[] = [
     id: "p1",
     name: "Dummy Game (unfinished)",
     description:
-      "A 2d hack and slash game. Player and monster sprites are drawn by me. Created this game out of curiosity and as a hobby.",
+      "A 2D hack and slash game. Player and monster sprites are drawn by me. Created this game out of curiosity and as a hobby.",
     github: "https://github.com/Hanseooo/dummy-game-project",
     hostedUrl: "https://drive.google.com/file/d/16TDplpZJYbnWAEjYTfe6w-3W4JL4WqYE/view?usp=sharing",
     images: ["/projects/Other/dummy-game.gif", 
@@ -394,7 +394,7 @@ export default function FeaturedProjects({ projects = featuredProjects }: { proj
         </div>
       </section>
 
-      <section ref={sectionRef} id="featured-projects" className="pt-6 md:pt-4 pb-24">
+      <section ref={sectionRef} id="featured-projects" className="pt-6 md:pt-4 pb-12">
             <motion.div
               className="text-center mb-8"
               initial={{ opacity: 0, scale: 1.5 }}
@@ -414,6 +414,7 @@ export default function FeaturedProjects({ projects = featuredProjects }: { proj
                 </article>
               ))}
             </div>
+            
       </section>
     </>
   );

@@ -84,7 +84,7 @@ export default function HeroSection() {
               <a href="#projects-section" className="w-full md:w-auto text-center">See Projects</a>
             </Button>
             <Button variant="outline" asChild>
-              <a href="#contact" className="w-full md:w-auto text-center">Github</a>
+              <a href="https://github.com/Hanseooo" target="_blank" className="w-full md:w-auto text-center">Github</a>
             </Button>
           </motion.div>
         </motion.div>

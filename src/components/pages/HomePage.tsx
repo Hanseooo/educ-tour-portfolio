@@ -10,6 +10,7 @@ import TechStackMarquee from "../sections/TechStackMarquee";
 import FeaturedProjects from "../sections/Projects";
 import { Particles } from "../ui/shadcn-io/particles";
 import { BackgroundBeams } from "../ui/shadcn-io/background-beams";
+import AboutMe from "../sections/AboutMe";
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +23,7 @@ export default function HomePage() {
   const setScrollY = useScrollStore((state) => state.setScrollY);
   const sectionRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
+  const aboutMeRef = useRef<HTMLDivElement>(null);
   const marqueeWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -81,11 +83,11 @@ export default function HomePage() {
         { y: 0 }, 
         {
           y: -800,
-          ease: "none",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 90%",   
-            end: "bottom 10%", 
+            start: "top 80%",   
+            end: "bottom 20%", 
             scrub: isMobile ? 0.8 : 3,
             markers: false,      
             // onUpdate: (self) => console.log("Scroll progress:", self.progress),
@@ -96,6 +98,36 @@ export default function HomePage() {
 
     return () => ctx.revert();
   }, []);
+
+
+useEffect(() => {
+  if (!projectsRef.current || !aboutMeRef.current) return;
+
+  const triggerEl = projectsRef.current;
+  const el = aboutMeRef.current;
+
+  const ctx = gsap.context(() => {
+    gsap.fromTo(
+      el,
+      { y: 0 },   // start offset
+      {
+        y: -900,   // end offset (different from Projects)
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: triggerEl,   // use Projects section as trigger
+          start: "top 80%",     // when Projects enters viewport
+          end: "bottom 10%",    // when Projects leaves viewport
+          scrub: isMobile ? 0.5 : 2,
+          // markers: true,      // for debugging
+        },
+      }
+    );
+  });
+
+  return () => ctx.revert();
+}, []);
+
+
 
 
   return (
@@ -143,8 +175,8 @@ export default function HomePage() {
 
 
       {/* ABOUT ME */}
-      <section className="py-20 bg-background text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-10">ABOUT ME</h2>
+      <section ref={aboutMeRef} className="py-20 bg-background text-center will-change-transform">
+        <AboutMe />
       </section>
     </main>
   );
