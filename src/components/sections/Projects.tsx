@@ -27,31 +27,44 @@ if (typeof window !== "undefined") {
 const mockProjects: ProjectInfo[] = [
   {
     id: "p1",
-    name: "Portfolio Website",
+    name: "The Podium",
     description:
-      "Responsive portfolio with blog and projects. Built with Next.js, Tailwind and shadcn.",
-    github: "https://github.com/username/portfolio",
-    hostedUrl: "https://your-portfolio.example",
-    images: ["/projects/portfolio/1.png", "/projects/portfolio/2.png"],
-    tech: ["React", "TypeScript", "Tailwind", "shadcn"],
+      "A web application for managing and tracking seminars. Tracks attendance, generates certificates for attendance sent to email, and an evaluation analytics for the admin. Built for WS101 during my 3rd year of college.",
+    github: "https://github.com/Hanseooo/attendance-evaluation-certification",
+    hostedUrl: null,
+    images: ["/projects/Podium/1.png", "/projects/Podium/2.png", "/projects/Podium/3.png", "/projects/Podium/4.png", 
+      "/projects/Podium/5.png", "/projects/Podium/6.png", "/projects/Podium/7.png", "/projects/Podium/8.png", 
+      "/projects/Podium/9.png", "/projects/Podium/10.png", "/projects/Podium/11.png", "/projects/Podium/12.png", 
+      "/projects/Podium/13.png", "/projects/Podium/14.png", "/projects/Podium/15.png", "/projects/Podium/16.png", 
+    ],
+    tech: ["React", "TypeScript", "Tailwind", "Shadcn", "Brevo Api", "Cloudinary", "Django", "Postgres", "Pillow"],
   },
   {
     id: "p2",
-    name: "Trivia App",
-    description: "Android trivia game with backend, stats and authentication.",
-    github: "https://github.com/username/trivia-app",
+    name: "HCDC Lost and Found Management System (ongoing)",
+    description: "A web application that lets users post either a lost or found item and notifies them if someone wants to claim or report that they found the item. An admin manages the posts. Built during my 3rd year of college for my IM101 subject.",
+    github: "https://github.com/Hanseooo/lfms",
     hostedUrl: null,
-    images: ["/projects/trivia/1.png"],
-    tech: ["Android", "Volley", "PHP", "MySQL"],
+    images: ["/projects/lfms/1.png","/projects/lfms/2.png","/projects/lfms/3.png","/projects/lfms/4.png","/projects/lfms/5.png","/projects/lfms/6.png","/projects/lfms/7.png",],
+    tech: ["React", "Typescript", "Tailwind", "Postgres", "Django", "Cloudinary", "Shadcn"],
+  },
+    {
+    id: "p3",
+    name: "H-Lens",
+    description: "A pure frontend photobooth web application. Created during the second semester of my Sophomore year to practice React.",
+    github: "https://github.com/Hanseooo/H-lens",
+    hostedUrl: "https://h-lens.vercel.app/",
+    images: ["/projects/H-Lens/1.png","/projects/H-Lens/2.png","/projects/H-Lens/3.png","/projects/H-Lens/4.png","/projects/H-Lens/5.png", ],
+    tech: ["HTML", "CSS", "Typescript", "React", "React-Bootstrap"],
   },
   {
-    id: "p3",
-    name: "ML Classifier",
-    description: "A small scikit-learn project demonstrating image classification.",
-    github: null,
-    hostedUrl: null,
-    images: ["/projects/ml/1.png", "/projects/ml/2.png", "/projects/ml/3.png"],
-    tech: ["Python", "scikit-learn"],
+    id: "p4",
+    name: "QuickFlash",
+    description: "A simple web application that aims to help users study and memorize effectively using flashcards. Created during the early days of my Sophomore year to improve my frontend skills.",
+    github: "https://github.com/Hanseooo/quickflash",
+    hostedUrl: "https://quickflash-psi.vercel.app/",
+    images: ["/projects/QuickFlash/hero.png", "/projects/QuickFlash/cards.png", "/projects/QuickFlash/quiz.png", "/projects/QuickFlash/about.png"],
+    tech: ["HTML", "CSS", "Javascript", "Bootstrap"],
   },
 ];
 
@@ -67,9 +80,11 @@ function ImageFallback({ name }: { name?: string }) {
 /* Embla Carousel */
 function EmblaCarousel({ images, alt }: { images: string[]; alt: string }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 6 });
-  const autoPlayInterval = useRef<NodeJS.Timeout | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const autoPlayInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // AUTO-PLAY ONLY IF MORE THAN 1 IMAGE
+  /* AUTOPLAY */
   useEffect(() => {
     if (!emblaApi || images.length <= 1) return;
 
@@ -77,18 +92,14 @@ function EmblaCarousel({ images, alt }: { images: string[]; alt: string }) {
       autoPlayInterval.current = setInterval(() => {
         if (!emblaApi) return;
         emblaApi.scrollNext();
-      }, 3000); // 3 seconds
+      }, 5000);
     };
 
-    // start autoplay
     play();
 
-    // pause when user interacts
     emblaApi.on("pointerDown", () => {
       if (autoPlayInterval.current) clearInterval(autoPlayInterval.current);
     });
-
-    // restart when user stops interacting
     emblaApi.on("pointerUp", () => {
       if (autoPlayInterval.current) clearInterval(autoPlayInterval.current);
       play();
@@ -99,54 +110,110 @@ function EmblaCarousel({ images, alt }: { images: string[]; alt: string }) {
     };
   }, [emblaApi, images.length]);
 
-  // FALLBACKS
-  if (!images || images.length === 0) {
-    return <ImageFallback name={alt} />;
-  }
+  /* ACTIVE DOT SYNC */
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const update = () => {
+      setActiveIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", update);
+    update();
+  }, [emblaApi]);
+
+  /* FALLBACKS */
+  if (!images || images.length === 0) return <ImageFallback name={alt} />;
 
   if (images.length === 1) {
     return (
-      <img
-        src={images[0]}
-        alt={alt}
-        onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
-        className="w-full h-56 md:h-64 object-cover rounded-md"
-      />
+      <>
+        <img
+          src={images[0]}
+          alt={alt}
+          onClick={() => setSelectedImage(images[0])}
+          className="w-full h-56 md:h-64 object-cover rounded-md cursor-pointer"
+        />
+
+        {/* Image Dialog */}
+        <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden">
+            <img src={selectedImage ?? ""} className="w-full h-auto object-contain" />
+          </DialogContent>
+        </Dialog>
+      </>
     );
   }
 
-  // MULTI-IMAGE CAROUSEL
+  /* MULTI-IMAGE CAROUSEL */
   return (
-    <div className="embla w-full rounded-md overflow-hidden">
-      <div ref={emblaRef} className="embla__viewport h-56 md:h-64">
-        <div className="embla__container flex h-full">
-          {images.map((src, idx) => (
-            <div key={idx} className="embla__slide flex-[0_0_100%] h-full">
-              <img
-                src={src}
-                alt={`${alt} ${idx + 1}`}
-                onError={(e) =>
-                  ((e.target as HTMLImageElement).style.display = "none")
-                }
-                className="w-full h-full object-cover"
-              />
-            </div>
+    <>
+      <div className="embla relative w-full rounded-md overflow-hidden">
+        {/* VIEWPORT */}
+        <div ref={emblaRef} className="embla__viewport h-56 md:h-64">
+          <div className="embla__container flex h-full">
+            {images.map((src, idx) => (
+              <div key={idx} className="embla__slide flex-[0_0_100%] h-full">
+                <img
+                  src={src}
+                  alt={`${alt} ${idx + 1}`}
+                  onClick={() => setSelectedImage(src)}
+                  className="w-full h-full object-cover cursor-pointer"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FLOATING NEXT/PREV BUTTONS (Style B) */}
+        <button
+          onClick={() => {
+            if (emblaApi) emblaApi.scrollPrev();
+            if (autoPlayInterval.current) clearInterval(autoPlayInterval.current); // stop autoplay
+          }}
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full text-primary hover:cursor-pointer text-xl"
+        >
+          ‹
+        </button>
+        <button
+          onClick={() => {
+            if (emblaApi) emblaApi.scrollNext();
+            if (autoPlayInterval.current) clearInterval(autoPlayInterval.current); // stop autoplay
+          }}
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full text-primary hover:cursor-pointer text-xl"
+        >
+          ›
+        </button>
+
+        {/* DOTS */}
+        <div className="flex justify-center gap-2 mt-3">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                if (emblaApi) emblaApi.scrollTo(i);
+                if (autoPlayInterval.current) clearInterval(autoPlayInterval.current); // stop autoplay
+              }}
+              className={`w-2 h-2 rounded-full transition-all ${
+                activeIndex === i ? "bg-primary" : "bg-foreground/40"
+              }`}
+            />
           ))}
         </div>
       </div>
 
-      {/* DOTS */}
-      <div className="flex justify-center gap-2 mt-2">
-        {images.map((_, i) => (
-          <span key={i} className="w-2 h-2 rounded-full bg-foreground/40" />
-        ))}
-      </div>
+      {/* IMAGE DIALOG */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl p-0 overflow-hidden">
+          <img src={selectedImage ?? ""} className="w-full h-auto object-contain" />
+        </DialogContent>
+      </Dialog>
 
       <style>{`
         .embla__viewport { overflow: hidden; width: 100%; }
         .embla__container { display: flex; height: 100%; user-select: none; }
       `}</style>
-    </div>
+    </>
   );
 }
 
