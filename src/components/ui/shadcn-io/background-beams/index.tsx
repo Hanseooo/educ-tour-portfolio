@@ -9,6 +9,10 @@ export interface BackgroundBeamsProps {
   className?: string;
 }
 
+const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(
+  navigator.userAgent
+);
+
 export const BackgroundBeams = React.memo(
   ({ className }: BackgroundBeamsProps) => {
     const paths = [
@@ -91,8 +95,8 @@ export const BackgroundBeams = React.memo(
               key={`path-${index}`}
               d={_path}
               stroke={`url(#linearGradient-${index})`}
-              strokeOpacity="0.45"
-              strokeWidth="0.5"
+              strokeOpacity= {isMobile ? 0.75 : 0.45}
+              strokeWidth= {isMobile ? 0.8 : 0.5}
             />
           ))}
           
@@ -122,8 +126,8 @@ export const BackgroundBeams = React.memo(
               >
               <stop stopColor="white" stopOpacity="0.015" />
               <stop stopColor="white" stopOpacity="0.25" />
-              <stop offset="35%" stopColor="rgb(34,139,34)" stopOpacity="0.30" />
-              <stop offset="100%" stopColor="rgb(34,139,34)" stopOpacity="0.025" />
+              <stop offset="35%" stopColor="rgb(34,139,34)" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="rgb(34,139,34)" stopOpacity="0.05" />
 
               </motion.linearGradient>
             ))}

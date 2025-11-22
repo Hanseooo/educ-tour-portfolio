@@ -378,7 +378,7 @@ export default function FeaturedProjects({ projects = featuredProjects }: { proj
           rangeY={2000}
           baseSpeed={0.0}
           rangeSpeed={0.2}
-          className="w-full will-change-transform"
+          className="w-full h-full min-h-screen will-change-transform"
       >
       <section ref={sectionRef} id="featured-projects" className="pt-6 md:pt-4 pb-24">
         
