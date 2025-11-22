@@ -44,9 +44,9 @@ export const Vortex = (props: VortexProps) => {
   let particleProps = new Float32Array(particlePropsLength);
   let center: [number, number] = [0, 0];
 
-  const _HALF_PI: number = 0.5 * Math.PI;
+  // const _HALF_PI: number = 0.5 * Math.PI;
   const TAU: number = 2 * Math.PI;
-  const _TO_RAD: number = Math.PI / 180;
+  // const _TO_RAD: number = Math.PI / 180;
   const rand = (n: number): number => n * Math.random();
   const randRange = (n: number): number => n - rand(2 * n);
   const fadeInOut = (t: number, m: number): number => {
@@ -60,12 +60,12 @@ export const Vortex = (props: VortexProps) => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (canvas && container) {
-      const _ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d");
 
-      if (_ctx) {
-        resize(canvas, _ctx);
+      if (ctx) {
+        resize(canvas, ctx);
         initParticles();
-        draw(canvas, _ctx);
+        draw(canvas, ctx);
       }
     }
   };
