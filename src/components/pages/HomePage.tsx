@@ -11,7 +11,7 @@ import FeaturedProjects from "../sections/Projects";
 import { Particles } from "../ui/shadcn-io/particles";
 import { BackgroundBeams } from "../ui/shadcn-io/background-beams";
 import AboutMe from "../sections/AboutMe";
-import { Vortex } from "../ui/shadcn-io/vortex";
+// import { Vortex } from "../ui/shadcn-io/vortex";
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
 const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -136,6 +136,15 @@ useEffect(() => {
     <main className="w-full overflow-x-hidden relative bg-linear-to-r from-background via-primary/10 to-background">
       <HeroSection />
 
+        <Particles
+          className="absolute inset-0 will-change-transform z-[-1]"
+          quantity={isMobile ? 100 : 175}
+          ease={80}
+          staticity={75}
+          color="#ffffff"
+          size={1.2}
+      />
+
       {/* Tech Stack Marquee Section - WITH GSAP PIN */}
       <section 
         ref={sectionRef}
@@ -146,14 +155,7 @@ useEffect(() => {
         // backgroundSize: "cover",
     }}
       >
-      <Particles
-        className="absolute inset-0 will-change-transform"
-        quantity={isMobile ? 80 : 120}
-        ease={80}
-        staticity={100}
-        color="#ffffff"
-        size={1}
-      />
+
         <div 
           ref={marqueeWrapperRef}
           className="w-full h-screen flex flex-col justify-center items-center"
@@ -163,7 +165,7 @@ useEffect(() => {
       </section>
 
       {/* PROJECTS */}
-      <Vortex
+      {/* <Vortex
         backgroundColor="transparent"
         particleCount={25}
         baseHue={120}
@@ -171,7 +173,7 @@ useEffect(() => {
         baseSpeed={0.0}
         rangeSpeed={0.2}
         className="w-full will-change-transform"
-      >
+      > */}
       <section
         id="projects-section"
         className="relative  py-8 text-center"
@@ -185,7 +187,7 @@ useEffect(() => {
         </div>
 
       </section>
-      </Vortex>
+      {/* </Vortex> */}
 
 
       {/* ABOUT ME */}
