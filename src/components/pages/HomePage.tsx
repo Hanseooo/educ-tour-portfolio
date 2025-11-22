@@ -11,7 +11,7 @@ import FeaturedProjects from "../sections/Projects";
 import { Particles } from "../ui/shadcn-io/particles";
 import { BackgroundBeams } from "../ui/shadcn-io/background-beams";
 import AboutMe from "../sections/AboutMe";
-// import { Vortex } from "../ui/shadcn-io/vortex";
+
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
 const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -163,20 +163,10 @@ useEffect(() => {
       </section>
 
       {/* PROJECTS */}
-      {/* <Vortex
-        backgroundColor="transparent"
-        particleCount={25}
-        baseHue={120}
-        rangeY={2000}
-        baseSpeed={0.0}
-        rangeSpeed={0.2}
-        className="w-full will-change-transform"
-      > */}
       <section
         id="projects-section"
         className="relative  py-8 text-center"
       >
-        {/* <Meteors number={30} className="will-change-transform" /> */}
 
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 will-change-transform"
         ref={projectsRef}
@@ -185,7 +175,6 @@ useEffect(() => {
         </div>
 
       </section>
-      {/* </Vortex> */}
 
 
       {/* ABOUT ME */}
