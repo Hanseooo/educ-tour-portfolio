@@ -41,6 +41,13 @@ export default function LoadingScreen({
       </p>
 
       <Progress value={progress} className="w-64 h-2 rounded-full" />
+        {
+          loadedCount >= 34 && (
+            <p className="text-primary/75 text-center text-xs p-6">
+              Project assets are being loaded for the best experience. Feel free to skip
+            </p>
+          )
+        }
 
       {showSkip && (
         <Button 
@@ -49,13 +56,13 @@ export default function LoadingScreen({
           onClick={onSkip}
         >
           <AlertCircle className="w-4 h-4" />
-          Is it loading too long? Skip
+          Is it loading too long?<span className="font-semibold">Skip</span>
         </Button>
       )}
       
         {isInAppBrowser() ? (
         <p className="text-primary/75 text-center text-xs fixed bottom-20 p-6">
-            Use external browsers such as Chrome, Brave, or Safari for better Experience <br />
+            Use external browsers such as <span className="italic">Chrome, Brave, or Safari</span>  for better Experience. 
             in-app browsers may cause issues
         </p>
         ) : null}

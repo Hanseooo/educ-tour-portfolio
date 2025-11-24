@@ -94,7 +94,7 @@ export default function HeroSection() {
       <div className="relative w-full md:w-1/2 flex justify-center md:justify-end items-center mt-12 md:mt-0"
       >
         <motion.div
-          className="relative overflow-hidden rounded-full"
+          className="relative overflow-hidden rounded-full "
           style={{
             width: "clamp(200px, 42vw, 420px)",
             height: "clamp(200px, 42vw, 420px)",
@@ -106,7 +106,7 @@ export default function HeroSection() {
           <motion.img
             src={meBg}
             alt="Background"
-            className="absolute bottom-12 scale-[1.75] left-0 w-full h-full object-cover select-none"
+            className="absolute bottom-12  scale-[1.75] left-0 w-full h-full object-cover select-none"
             style={{ y: bgTranslate,  }}
             draggable={false}
           />
@@ -114,7 +114,7 @@ export default function HeroSection() {
           <motion.img
             src={me}
             alt="Hans Amoguis"
-            className="absolute bottom-12 z-10 scale-[2.25] md:scale-[2] left-0 w-full h-full object-contain select-none"
+            className="absolute bottom-12 hover:drop-shadow-accent-foreground hover:drop-shadow-2xl z-10 scale-[2.25] md:scale-[2] left-0 w-full h-full object-contain select-none"
             style={{ y: heroTranslate,  }}
             draggable={false}
           />
