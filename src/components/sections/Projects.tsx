@@ -30,7 +30,7 @@ const featuredProjects: ProjectInfo[] = [
     id: "p1",
     name: "The Podium",
     description:
-      "A web application for managing and tracking seminars. Tracks attendance, evaluate attended seminars, generates certificates then sent to email, and a seminar evaluation analytics for the admin. Built for WS101 during my 3rd year of college.",
+      "A web application for managing and tracking seminars. Tracks attendance, evaluate attended seminars, generates certificates and sent to email, and a seminar evaluation analytics for the admin. Built for WS101 during my 3rd year of college.",
     github: "https://github.com/Hanseooo/attendance-evaluation-certification",
     hostedUrl: null,
     images: ["/projects/Podium/1.png", "/projects/Podium/2.png", "/projects/Podium/3.png", "/projects/Podium/4.png", 
@@ -393,7 +393,7 @@ export default function FeaturedProjects({ projects = featuredProjects }: { proj
               {featured.map((project) => (
                 <article
                   key={project.id}
-                  className="project-card backdrop-blur-xs bg-background/25 border-2 border-primary/10 rounded-2xl shadow-md overflow-hidden w-full max-w-3xl will-change-transform"
+                  className="project-card backdrop-blur-xs bg-linear-to-tr from-background/25 via-primary/5 to-card/50 border-2 border-primary/10 rounded-2xl shadow-md overflow-hidden w-full max-w-3xl will-change-transform"
                 >
                   <ProjectCardContent project={project} />
                 </article>

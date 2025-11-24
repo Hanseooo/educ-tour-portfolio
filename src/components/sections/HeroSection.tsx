@@ -21,7 +21,7 @@ export default function HeroSection() {
 
 
   useEffect(() => {
-    const bgTarget = scrollY * 0.1;
+    const bgTarget = scrollY * 0.12;
     const heroTarget = scrollY * 0.24;
     const nameTarget = scrollY * 0.65; // Name scrolls fastest
     const taglineTarget = scrollY * 0.75; // Tagline scrolls slower
@@ -106,16 +106,16 @@ export default function HeroSection() {
           <motion.img
             src={meBg}
             alt="Background"
-            className="absolute bottom-18 left-0 w-full h-full object-cover select-none"
-            style={{ y: bgTranslate, scale: 1.75 }}
+            className="absolute bottom-12 scale-[1.75] left-0 w-full h-full object-cover select-none"
+            style={{ y: bgTranslate,  }}
             draggable={false}
           />
           {/* Zoomed hero */}
           <motion.img
             src={me}
             alt="Hans Amoguis"
-            className="absolute bottom-15 left-0 w-full h-full object-contain select-none"
-            style={{ y: heroTranslate, scale: 1.75 }}
+            className="absolute bottom-12 z-10 scale-[2.25] md:scale-[2] left-0 w-full h-full object-contain select-none"
+            style={{ y: heroTranslate,  }}
             draggable={false}
           />
         </motion.div>
