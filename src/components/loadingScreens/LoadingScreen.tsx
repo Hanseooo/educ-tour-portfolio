@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { isInAppBrowser } from "@/utils/browserInfo";
 
 interface LoadingScreenProps {
   progress: number;
@@ -11,6 +12,7 @@ interface LoadingScreenProps {
   total: number;
   onSkip: () => void;
 }
+
 
 export default function LoadingScreen({
   progress,
@@ -50,6 +52,13 @@ export default function LoadingScreen({
           Is it loading too long? Skip
         </Button>
       )}
+      
+        {isInAppBrowser() ? (
+        <p className="text-primary/75 text-center text-xs fixed bottom-20 p-8">
+            Use external browsers such as Chrome, Brave, or Safari for better Experience <br />
+            in-app browsers may cause issues
+        </p>
+        ) : null}
     </div>
   );
 }

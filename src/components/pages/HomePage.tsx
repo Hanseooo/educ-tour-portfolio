@@ -17,9 +17,12 @@ import { useAssetPreloader } from "@/hooks/useAssetPreloader";
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
+
 const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(
   navigator.userAgent
 );
+
+
 
 
 export default function HomePage() {
