@@ -21,8 +21,8 @@ export default function HeroSection() {
 
 
   useEffect(() => {
-    const bgTarget = scrollY * 0.12;
-    const heroTarget = scrollY * 0.24;
+    const bgTarget = scrollY * 0.16;
+    const heroTarget = scrollY * 0.2;
     const nameTarget = scrollY * 0.65; // Name scrolls fastest
     const taglineTarget = scrollY * 0.75; // Tagline scrolls slower
     const buttonTarget = scrollY * 0.8;

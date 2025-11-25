@@ -223,69 +223,139 @@ export default function CertificatesPage() {
       </div>
 
       {/* Fullscreen-style Dialog */}
-      <Dialog open={openIndex !== null} onOpenChange={() => setOpenIndex(null)}>
-        <DialogContent className="max-w-5xl w-full p-0 bg-background/75 backdrop-blur-md rounded-xl">
-          {openIndex !== null && (
-            <div className="w-full">
-              <DialogHeader className="px-6 pt-6">
-                <DialogTitle className="text-2xl font-semibold">
-                  {certificates[openIndex].title}
-                </DialogTitle>
-              </DialogHeader>
+    <Dialog open={openIndex !== null} onOpenChange={() => setOpenIndex(null)}>
+    <DialogContent
+        className="
+        w-full 
+        max-w-5xl 
+        p-0 
+        bg-background/50 
+        backdrop-blur-md 
+        rounded-xl 
+        overflow-hidden
+        "
+    >
+        {openIndex !== null && (
+        <div className="w-full">
 
-              {/* Large Image Display */}
-              <div className="w-full aspect-4/3 bg-muted/10 mt-4 rounded-lg overflow-hidden flex items-center justify-center">
+            {/* Header */}
+            <DialogHeader
+            className="
+                px-6 pt-6
+                text-center
+                md:text-start
+            "
+            >
+            <DialogTitle className="text-2xl font-semibold">
+                {certificates[openIndex].title}
+            </DialogTitle>
+            </DialogHeader>
+
+            {/* Landscape layout container */}
+            <div
+            className="
+                w-full 
+                flex 
+                flex-col 
+                md:flex-row 
+                gap-6 
+                px-4 
+                md:px-6 
+                py-4
+            "
+            >
+
+            {/* Image Section */}
+            <div
+                className="
+                flex-1
+                flex 
+                items-center 
+                justify-center 
+                "
+            >
+                <div
+                className="
+                    aspect-4/3 
+                    w-full 
+                    rounded-lg 
+                    overflow-hidden 
+                    bg-muted/10 
+                    
+                    /* Add space around image on mobile only */
+                    p-3 
+                    md:p-0
+                "
+                >
                 <img
-                  src={certificates[openIndex].imageUrl}
-                  alt={certificates[openIndex].title}
-                  className="max-w-full max-h-full object-contain select-none"
+                    src={certificates[openIndex].imageUrl}
+                    alt={certificates[openIndex].title}
+                    className="w-full h-full object-contain select-none"
                 />
-              </div>
-
-              {/* Metadata Section */}
-              <div className="px-6 py-6 flex flex-col gap-2">
-                <div className="font-medium text-lg">
-                  {certificates[openIndex].issuer}
                 </div>
+            </div>
+
+            {/* Metadata Section */}
+            <div
+                className="
+                flex-1
+                flex 
+                flex-col 
+                justify-between 
+                gap-4 
+                text-center 
+                md:text-start
+                pb-4
+                "
+            >
+                <div>
+                <div className="font-medium text-lg">
+                    {certificates[openIndex].issuer}
+                </div>
+
                 <div className="text-sm text-muted-foreground">
-                  {certificates[openIndex].date}
+                    {certificates[openIndex].date}
                 </div>
 
                 {certificates[openIndex].credentialUrl && (
-                  <div className="mt-3">
+                    <div className="mt-4">
                     <Tooltip>
-                      <TooltipTrigger asChild>
+                        <TooltipTrigger asChild>
                         <Button
-                          size="sm"
-                          onClick={() =>
+                            size="sm"
+                            onClick={() =>
                             window.open(
-                              certificates[openIndex].credentialUrl!,
-                              "_blank",
-                              "noopener,noreferrer"
+                                certificates[openIndex].credentialUrl!,
+                                "_blank",
+                                "noopener,noreferrer"
                             )
-                          }
+                            }
                         >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Open Credential
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Open Credential
                         </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
+                        </TooltipTrigger>
+                        <TooltipContent>
                         Opens credential in a new tab
-                      </TooltipContent>
+                        </TooltipContent>
                     </Tooltip>
-                  </div>
+                    </div>
                 )}
-              </div>
+                </div>
 
-              <DialogFooter className="px-6 pb-6">
+                {/* Footer */}
+                <DialogFooter className="md:justify-start justify-center">
                 <Button variant="ghost" onClick={() => setOpenIndex(null)}>
-                  Close
+                    Close
                 </Button>
-              </DialogFooter>
+                </DialogFooter>
             </div>
-          )}
-        </DialogContent>
-      </Dialog>
+            </div>
+        </div>
+        )}
+    </DialogContent>
+    </Dialog>
+
     </main>
   );
 }
