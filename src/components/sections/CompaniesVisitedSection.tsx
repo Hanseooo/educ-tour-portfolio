@@ -7,6 +7,7 @@ import mata from "@/assets/images/Companies/mata-tech.png";
 import rivan from "@/assets/images/Companies/rivan-it-cebu.jpg";
 import tarsier from "@/assets/images/Companies/TaRSIER-117.jpg";
 import cebuInit from "@/assets/images/Companies/UP-Cebu-Business-Incubator.png";
+import { useEffect } from "react";
 
 export type Company = {
   name: string;
@@ -78,6 +79,11 @@ const companies: Company[] = [
 ];
 
 export default function CompaniesVisitedSection() {
+
+    useEffect (() => {
+       window.scrollTo(0, 0)
+    })
+
   return (
     <article className="max-w-6xl mx-auto px-4 py-12 space-y-20">
       <h4 className="text-3xl font-bold">Journal Entries</h4>
@@ -85,9 +91,9 @@ export default function CompaniesVisitedSection() {
       {companies.map((company, index) => (
         <motion.div
           key={company.name}
-          initial={{ opacity: 0.5, x: index % 2 === 0 ? -50 : 50 }}
+          initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className={`flex flex-col items-center gap-8 md:gap-12 lg:flex-row ${
             index % 2 !== 0 ? "lg:flex-row-reverse" : ""
