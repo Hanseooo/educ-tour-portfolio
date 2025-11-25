@@ -118,7 +118,7 @@ export default function CertificatesPage() {
               end: "bottom top",
               scrub: 0.85,
               invalidateOnRefresh: true,
-              markers: true
+              markers: false,
             },
           }
         );
