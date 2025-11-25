@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { ASSETS_TO_LOAD } from "@/utils/assetsToLoad";
+// import { ASSETS_TO_LOAD } from "@/utils/assetsToLoad";
 
-export function useAssetPreloader() {
+export function useAssetPreloader(ASSETS_TO_LOAD: string[]) {
   const [loadedCount, setLoadedCount] = useState(0);
   const total = ASSETS_TO_LOAD.length;
   const [isLoaded, setIsLoaded] = useState(false);

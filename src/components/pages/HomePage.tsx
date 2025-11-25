@@ -13,6 +13,7 @@ import { BackgroundBeams } from "../ui/shadcn-io/background-beams";
 import AboutMe from "../sections/AboutMe";
 import LoadingScreen from "../loadingScreens/LoadingScreen";
 import { useAssetPreloader } from "@/hooks/useAssetPreloader";
+import { ASSETS_TO_LOAD } from "@/utils/assetsToLoad";
 // import { isInAppBrowser } from "@/utils/browserInfo";
 
 // Register GSAP plugin
@@ -38,26 +39,23 @@ export default function HomePage() {
     loadedCount,
     total,
     setIsLoaded,
-  } = useAssetPreloader();
+  } = useAssetPreloader(ASSETS_TO_LOAD);
 
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener("scroll", handleScroll);
+useEffect(() => {
+  window.scrollTo(0, 0);
+  setScrollY(0);
 
-    // Animate scroll to top on page load
-    const scrollAnim = animate(window.scrollY, 0, {
-      duration: 1,
-      onUpdate: (v) => window.scrollTo(0, v),
-    });
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+  window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      scrollAnim.stop();
-    };
-  }, [setScrollY]);
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, [setScrollY]);
+
 
   // GSAP ScrollTrigger PIN effect
   useEffect(() => {

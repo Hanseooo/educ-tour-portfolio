@@ -9,13 +9,17 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { isInAppBrowser } from "@/utils/browserInfo";
 import { useAssetPreloader } from "@/hooks/useAssetPreloader";
+import { ASSETS_TO_LOAD } from "@/utils/assetsToLoad";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 export default function AboutMe() {
   const leftRef = useRef<HTMLDivElement | null>(null);
-  const { isLoaded } = useAssetPreloader();
+  const { isLoaded } = useAssetPreloader(ASSETS_TO_LOAD);
+  const navigate = useNavigate()
+
 //   const rightSectionsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -115,7 +119,10 @@ export default function AboutMe() {
           </p>
 
           <div className="w-full flex flex-col space-y-2">
-            <Button variant="default" size="sm" className="w-full">
+            <Button variant="default" size="sm" className="w-full" onClick={ () => {
+              navigate("/certificates")
+              }
+            }>
                 Certificates
             </Button>
             <Button variant="outline" size="sm" className="w-full">

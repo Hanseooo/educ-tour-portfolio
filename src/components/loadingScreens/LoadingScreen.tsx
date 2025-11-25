@@ -47,7 +47,7 @@ export default function LoadingScreen({
 
       <Progress value={progress} className="w-64 h-2 rounded-full" />
         {
-          loadedCount >= 34 || isLongLoad && (
+          isLongLoad || loadedCount >= 34 && (
             <p className="text-primary/75 text-center text-xs p-6">
               Project assets are being loaded for the best experience. Feel free to skip
             </p>

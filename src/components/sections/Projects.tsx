@@ -19,6 +19,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
 import { isInAppBrowser } from "@/utils/browserInfo";
 import { useAssetPreloader } from "@/hooks/useAssetPreloader";
+import { ASSETS_TO_LOAD } from "@/utils/assetsToLoad";
 
 // Register plugin at module level with SSR check
 if (typeof window !== "undefined") {
@@ -323,7 +324,7 @@ export default function FeaturedProjects({ projects = featuredProjects }: { proj
   const featured = useMemo(() => projects.slice(0, projects.length), [projects]);
   const sectionRef = useRef<HTMLElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
-  const { isLoaded } = useAssetPreloader();
+  const { isLoaded } = useAssetPreloader(ASSETS_TO_LOAD);
 
 
   useEffect(() => {
