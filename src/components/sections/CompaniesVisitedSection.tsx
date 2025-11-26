@@ -28,8 +28,8 @@ const companies: Company[] = [
     image: cebuInit,
     link: "https://www.facebook.com/UPCebuinIT/",
     JournalEntry: {
-      observations: "sample text",
-      learnings: "sample text",
+      observations: "I observed that they value innovation and try to help achieve and provide sustainable solutions to problems thus helping startups and students by providing guidance.",
+      learnings: "I learned to be resourceful with my ideas to solve a problem like using current trends to inefficient systems to improve it.",
     },
   },
   {
@@ -39,8 +39,8 @@ const companies: Company[] = [
     image: dynata,
     link: "https://www.dynata.com/",
     JournalEntry: {
-      observations: "sample text",
-      learnings: "sample text",
+      observations: "I observed that it is a company that gives importance to their employees' career growth and safety.",
+      learnings: "I learned about the different positions/roles in the company, how they work, and how they handle projects together. They told us about what the different positions do  or theyr roles. I also learned about programming languages they use in their company.",
     },
   },
   {
@@ -50,8 +50,8 @@ const companies: Company[] = [
     image: rivan,
     link: "https://www.facebook.com/rivanitcebu/",
     JournalEntry: {
-      observations: "sample text",
-      learnings: "sample text",
+      observations: "I observed that they are more into networking which is a field that is also fundamentally essential in cybersecurity and cloud computing. They value a person's skillset determination to learn.",
+      learnings: "I learned about the habitsthat make a skilled professional. I learned about how small habits impact the transition of productive actions with discomfort into a productive action with comfort. I also learned how to configure a switch with analog telephones connected to it using a CLI during the activity.",
     },
   },
   {
@@ -61,8 +61,8 @@ const companies: Company[] = [
     image: mata,
     link: "https://mata.tours/",
     JournalEntry: {
-      observations: "sample text",
-      learnings: "sample text",
+      observations: "I observed that they value their employees and growth and offers trainings. They aim to make it accesible to users the places they are about to visit by providing 360-degree virtual tours.",
+      learnings: "I learned about how they made their 3D components/assets and the roles of the people working in the company.",
     },
   },
   {
@@ -72,8 +72,8 @@ const companies: Company[] = [
     image: tarsier,
     link: "https://www.facebook.com/TaRSIER117/",
     JournalEntry: {
-      observations: "sample text",
-      learnings: "sample text",
+      observations: "tba",
+      learnings: "tba",
     },
   },
 ];
@@ -93,7 +93,7 @@ export default function CompaniesVisitedSection() {
           key={company.name}
           initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           className={`flex flex-col items-center gap-8 md:gap-12 lg:flex-row ${
             index % 2 !== 0 ? "lg:flex-row-reverse" : ""
@@ -130,22 +130,27 @@ export default function CompaniesVisitedSection() {
                     <ExternalLink className="w-5 h-5" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent>Visit company website</TooltipContent>
+                <TooltipContent>view page</TooltipContent>
               </Tooltip>
             )}
 
             {/* Journal Entry Section */}
-            <div className="mt-6 p-4 rounded-lg bg-muted/30 text-left space-y-2">
+            <motion.div
+              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="mt-6 p-4 rounded-lg bg-muted/30 text-left space-y-2">
               <h4 className="text-lg font-semibold">Journal Entry</h4>
-              <p>
-                <span className="font-semibold">Observations:</span>{" "}
+              <p className="text-foreground/70">
+                <span className="font-semibold text-primary">Observations:</span>{" "}
                 {company.JournalEntry.observations}
               </p>
-              <p>
-                <span className="font-semibold">Learnings:</span>{" "}
+              <p className="text-foreground/70">
+                <span className="font-semibold text-primary">Learnings:</span>{" "}
                 {company.JournalEntry.learnings}
               </p>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       ))}

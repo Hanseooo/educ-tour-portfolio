@@ -7,7 +7,7 @@ import me from "@/assets/images/hans.png";
 import waves from "@/assets/svg/topography.svg";
 
 const NAME = "Hans Amoguis";
-const TAGLINE = "Full-Stack Developer";
+const TAGLINE = "Full-Stack Web Developer";
 
 export default function HeroSection() {
   const scrollY = useScrollStore((s) => s.scrollY);

@@ -2,9 +2,9 @@ import CompaniesVisitedSection from "../sections/CompaniesVisitedSection";
 
 export default function EducationalTourPage() {
   const tarsierCertificate = {
-    title: "Tarsier 117 Completion Certificate",
-    issuer: "Tarsier 117",
-    date: "2025",
+    title: "T.A.R.S.I.E.R 117 Completion Certificate",
+    issuer: "T.A.R.S.I.E.R 117",
+    date: "November 15, 2025",
   };
 
   return (
@@ -16,14 +16,14 @@ export default function EducationalTourPage() {
         </h2>
         <p className="mt-3 text-muted-foreground max-w-xl mx-auto text-lg">
           A collection of companies visited and experiences gained during the
-          Cebu–Bohol educational immersion.
+          Cebu–Bohol Educational Tour.
         </p>
       </header>
 
       <CompaniesVisitedSection />
 
       <h4 className="text-3xl font-bold mt-20 mb-8 text-center">
-        Certificate Received
+        Certificate <span className="text-primary">Received</span> 
       </h4>
       <section className="max-w-xl mx-auto">
         <div className="rounded-xl border bg-card shadow-md p-6 space-y-4 text-center">
@@ -35,7 +35,7 @@ export default function EducationalTourPage() {
             Issuer: {tarsierCertificate.issuer}
           </p>
           <p className="text-sm text-muted-foreground">
-            Year: {tarsierCertificate.date}
+            Date: {tarsierCertificate.date}
           </p>
         </div>
       </section>

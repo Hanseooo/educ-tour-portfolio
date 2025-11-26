@@ -108,9 +108,9 @@ export default function CertificatesPage() {
       cards.forEach((card, i) => {
         gsap.fromTo(
           card,
-          { y: 0 },
+          { y: 0, scale: 1, },
           {
-            y: -200 - (i * 50),
+            y: -200 - (i * 50), scale: 0.95,
             ease: "circ",
             scrollTrigger: {
               trigger: card,
@@ -153,7 +153,7 @@ export default function CertificatesPage() {
         <header className="mb-10 text-center">
           <h1 className="text-3xl md:text-4xl font-bold">Certificates</h1>
           <p className="mt-2 text-muted-foreground">
-            Credentials & Training
+            Acquired Certificates
           </p>
         </header>
 
