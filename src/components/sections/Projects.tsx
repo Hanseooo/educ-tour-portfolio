@@ -31,7 +31,7 @@ const featuredProjects: ProjectInfo[] = [
     id: "p1",
     name: "The Podium",
     description:
-      "A web application for managing and tracking seminars. Tracks attendance, evaluate attended seminars, generates certificates and sent to email, and a seminar evaluation analytics for the admin. Built for WS101 during my 3rd year of college.",
+      "A web application for managing and tracking seminars for HCDC's VPAA. Tracks attendance, evaluate attended seminars, generates certificates and sent to email, and a seminar evaluation analytics for the admin with a certificate template editor. Built for WS101 during my 3rd year of college.",
     github: "https://github.com/Hanseooo/attendance-evaluation-certification",
     hostedUrl: "https://hcdc-podium.vercel.app/",
     images: ["/projects/Podium/1.png", "/projects/Podium/2.png", "/projects/Podium/3.png", "/projects/Podium/4.png", 
@@ -39,7 +39,7 @@ const featuredProjects: ProjectInfo[] = [
       "/projects/Podium/9.png", "/projects/Podium/10.png", "/projects/Podium/11.png", "/projects/Podium/12.png", 
       "/projects/Podium/13.png", "/projects/Podium/14.png", "/projects/Podium/15.png", "/projects/Podium/16.png", 
     ],
-    tech: ["React", "TypeScript", "Tailwind", "Shadcn", "Brevo Api", "Cloudinary", "Django", "Postgres", "Pillow"],
+    tech: ["React", "TypeScript", "Tailwind", "Shadcn", "Brevo", "Cloudinary", "Django", "Postgres", "Pillow", "Railway", "Neon"],
   },
   {
     id: "p2",
