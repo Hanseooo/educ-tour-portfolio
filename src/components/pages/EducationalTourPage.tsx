@@ -37,7 +37,7 @@ export default function EducationalTourPage() {
             
           ]}
           className={cn(
-            "mask-[radial-gradient(800px_circle_at_center,white,transparent)]",
+            "mask-[radial-gradient(farthest-side_at_center,white,transparent)]",
             "inset-x-0 inset-y-[-85%] h-[200%] skew-y-12 z-[-1]"
           )}
         />
