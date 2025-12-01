@@ -173,8 +173,8 @@ export default function TourGallerySection() {
       }
 
       // Mobile performance optimizations
-      const scrubSpeed = isMobile ? 1.2 : 1.8; // Faster scrub on mobile
-      const cardScrubSpeed = isMobile ? 1.5 : 2.5; // Faster card animations on mobile
+      const scrubSpeed = isMobile ? 0.3 : 1.8; // Faster scrub on mobile
+    //   const cardScrubSpeed = isMobile ? 0.5 : 2.5; // Faster card animations on mobile
 
       ctx = gsap.context(() => {
         // Fade in animation
@@ -218,8 +218,6 @@ export default function TourGallerySection() {
           },
         });
 
-        // Background parallax (disabled on mobile for performance)
-        if (!isMobile) {
           gsap.to(bgEl, {
             x: -maxScroll * 0.25,
             ease: "none",
@@ -227,10 +225,9 @@ export default function TourGallerySection() {
               trigger: containerEl,
               start: "top top",
               end: `+=${maxScroll * 2}`,
-              scrub: 2,
+              scrub: isMobile ? 0.2 : 2,
             },
           });
-        }
 
         // Overlay fade
         gsap.fromTo(
@@ -243,61 +240,61 @@ export default function TourGallerySection() {
               trigger: containerEl,
               start: "top top",
               end: `+=${maxScroll * 2}`,
-              scrub: 2,
+              scrub: isMobile ? 0.2 :2,
             },
           }
         );
 
         // Intro fade (disabled on mobile)
-        if (!isMobile) {
-          gsap.to(introEl, {
-            y: -120,
-            opacity: 0.4,
-            ease: "none",
-            scrollTrigger: {
-              trigger: containerEl,
-              start: "top top",
-              end: `+=${maxScroll * 2}`,
-              scrub: 2,
-            },
-          });
-        }
+        // if (!isMobile) {
+        //   gsap.to(introEl, {
+        //     y: -120,
+        //     opacity: 0.4,
+        //     ease: "none",
+        //     scrollTrigger: {
+        //       trigger: containerEl,
+        //       start: "top top",
+        //       end: `+=${maxScroll * 2}`,
+        //       scrub: 2,
+        //     },
+        //   });
+        // }
 
         // Card animations (simplified on mobile)
-        gsap.utils.toArray<HTMLElement>(".tour-card").forEach((cardEl, i) => {
-          // Minimal parallax on mobile
-          if (!isMobile) {
-            const verticalOffset = (i % 2 === 0 ? 1 : -1) * (12 + (i % 3) * 8);
-            const scaleTo = 1.02 + (i % 3) * 0.005;
+        // gsap.utils.toArray<HTMLElement>(".tour-card").forEach((cardEl, i) => {
+        //   // Minimal parallax on mobile
+        //   if (!isMobile) {
+        //     const verticalOffset = (i % 2 === 0 ? 1 : -1) * (12 + (i % 3) * 8);
+        //     const scaleTo = 1.02 + (i % 3) * 0.005;
 
-            gsap.to(cardEl, {
-              y: verticalOffset,
-              ease: "none",
-              scrollTrigger: {
-                trigger: containerEl,
-                start: "top top",
-                end: `+=${maxScroll * 2}`,
-                scrub: cardScrubSpeed,
-              },
-            });
+        //     gsap.to(cardEl, {
+        //       y: verticalOffset,
+        //       ease: "none",
+        //       scrollTrigger: {
+        //         trigger: containerEl,
+        //         start: "top top",
+        //         end: `+=${maxScroll * 2}`,
+        //         scrub: cardScrubSpeed,
+        //       },
+        //     });
 
-            gsap.fromTo(
-              cardEl,
-              { scale: 1, boxShadow: "0px 10px 40px rgba(0,0,0,0.1)" },
-              {
-                scale: scaleTo,
-                boxShadow: "0px 25px 60px rgba(0,0,0,0.2)",
-                ease: "none",
-                scrollTrigger: {
-                  trigger: containerEl,
-                  start: "top top",
-                  end: `+=${maxScroll * 2}`,
-                  scrub: cardScrubSpeed,
-                },
-              }
-            );
-          }
-        });
+        //     gsap.fromTo(
+        //       cardEl,
+        //       { scale: 1, boxShadow: "0px 10px 40px rgba(0,0,0,0.1)" },
+        //       {
+        //         scale: scaleTo,
+        //         boxShadow: "0px 25px 60px rgba(0,0,0,0.2)",
+        //         ease: "none",
+        //         scrollTrigger: {
+        //           trigger: containerEl,
+        //           start: "top top",
+        //           end: `+=${maxScroll * 2}`,
+        //           scrub: cardScrubSpeed,
+        //         },
+        //       }
+        //     );
+        //   }
+        // });
 
         ScrollTrigger.refresh();
       }, containerEl);
